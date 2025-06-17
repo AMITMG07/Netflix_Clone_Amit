@@ -5,7 +5,6 @@ import movies from "../movies";
 import MovieCard from "../components/MovieCard";
 import { useWishlist } from "../components/WishlistContext";
 
-// ✅ Updated Mute/Unmute Icons
 const MuteIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="24" height="24">
     <path d="M16.5 12c0-1.77-.77-3.37-2-4.47v8.94a5.97 5.97 0 002-4.47zm-5.14-6.94L7 8H3v8h4l4.36 2.94A.995.995 0 0012 18V6c0-.89-1.08-1.33-1.64-.94zM21.19 21.19L2.81 2.81 1.39 4.22 4.73 7.56C4.28 8.52 4 9.72 4 11c0 2.9 1.61 5.42 4 6.74V19l6 4v-6.17l4.78 4.78 1.41-1.42z" />
@@ -48,41 +47,36 @@ function Details() {
           playing
           loop
           muted={isMuted}
-          className="scale-[1.5] sm:scale-[1.2]"
+          className="!absolute !top-0 !left-0 !h-full !w-full object-cover"
         />
 
-        {/* Movie Info */}
-        <div className="absolute left-4 sm:left-16 top-28 sm:top-40 w-[90%] sm:w-[400px]">
-          <div className="bg-orange-700 text-white px-3 py-1 rounded text-xs inline-block">
+        {/* Movie Info Overlay */}
+        <div className="absolute z-10 left-4 right-4 sm:left-16 top-24 sm:top-40 bg-black bg-opacity-50 p-4 rounded-lg max-w-md text-white">
+          <div className="bg-orange-600 text-white px-3 py-1 rounded text-xs inline-block">
             IMDB Rating: {movie.imdb_rating}
           </div>
-          <h1 className="text-white text-2xl sm:text-4xl font-extrabold mt-2 leading-tight">
-            {movie.title}
-          </h1>
-          <p className="text-white mt-2 text-sm sm:text-base leading-snug">
-            {movie.description}
-          </p>
-
+          <h1 className="text-xl sm:text-3xl font-bold mt-2">{movie.title}</h1>
+          <p className="mt-2 text-sm sm:text-base leading-relaxed">{movie.description}</p>
           <button
             onClick={handleAddToWishlist}
-            className="px-4 py-2 bg-white text-black mt-3 rounded-lg hover:bg-gray-300 transition duration-200 text-sm sm:text-base"
+            className="mt-4 px-4 py-2 bg-white text-black rounded-md text-sm sm:text-base hover:bg-gray-300 transition duration-200"
           >
             Add to Watchlist
           </button>
         </div>
 
-        {/* Go Back Button */}
+        {/* Go Back */}
         <Link
           to="/"
-          className="absolute top-4 right-4 sm:top-6 sm:right-10 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base text-white border border-white rounded-md hover:bg-white hover:text-black transition duration-200"
+          className="absolute z-10 top-4 right-4 sm:top-6 sm:right-10 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base text-white border border-white rounded-md hover:bg-white hover:text-black transition duration-200"
         >
           Go Back
         </Link>
 
-        {/* Mute/Unmute Toggle Button */}
+        {/* Mute/Unmute Button */}
         <button
           onClick={() => setIsMuted((prev) => !prev)}
-          className="absolute bottom-6 right-6 sm:top-[70%] sm:right-10 border border-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-white hover:text-black transition duration-200"
+          className="absolute z-10 bottom-4 right-4 sm:bottom-8 sm:right-10 border border-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-white hover:text-black transition duration-200"
         >
           {isMuted ? <MuteIcon /> : <UnmuteIcon />}
         </button>
