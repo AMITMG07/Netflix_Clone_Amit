@@ -39,7 +39,7 @@ function Details() {
 
   return (
     <>
-      <div className="relative w-full h-[60vh] sm:h-[80vh] overflow-hidden">
+      <div className="relative w-full h-[80vh] sm:h-[90vh] overflow-hidden">
         <ReactPlayer
           url={movie.youtube_trailer}
           width="100%"
@@ -50,8 +50,11 @@ function Details() {
           className="!absolute !top-0 !left-0 !h-full !w-full object-cover"
         />
 
+        {/* Gradient Overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent z-10" />
+
         {/* Movie Info Overlay */}
-        <div className="absolute z-10 left-4 right-4 sm:left-16 top-24 sm:top-40 bg-black bg-opacity-50 p-4 rounded-lg max-w-md text-white">
+        <div className="absolute z-20 inset-x-4 bottom-20 sm:left-16 sm:bottom-32 bg-black/60 p-4 sm:p-6 rounded-lg max-w-md text-white">
           <div className="bg-orange-600 text-white px-3 py-1 rounded text-xs inline-block">
             IMDB Rating: {movie.imdb_rating}
           </div>
@@ -68,7 +71,7 @@ function Details() {
         {/* Go Back */}
         <Link
           to="/"
-          className="absolute z-10 top-4 right-4 sm:top-6 sm:right-10 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base text-white border border-white rounded-md hover:bg-white hover:text-black transition duration-200"
+          className="absolute z-30 top-4 left-4 px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base text-white border border-white rounded-md hover:bg-white hover:text-black transition duration-200"
         >
           Go Back
         </Link>
@@ -76,7 +79,7 @@ function Details() {
         {/* Mute/Unmute Button */}
         <button
           onClick={() => setIsMuted((prev) => !prev)}
-          className="absolute z-10 bottom-4 right-4 sm:bottom-8 sm:right-10 border border-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-white hover:text-black transition duration-200"
+          className="absolute z-30 bottom-4 right-4 border border-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-white hover:text-black transition duration-200"
         >
           {isMuted ? <MuteIcon /> : <UnmuteIcon />}
         </button>
