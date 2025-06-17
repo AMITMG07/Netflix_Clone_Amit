@@ -5,11 +5,15 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { WishlistProvider } from './components/WishlistContext.jsx';
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <WishlistProvider>
-        <App />
+        <HashRouter>
+          <App />
+        </HashRouter>
+        
       </WishlistProvider>
     </BrowserRouter>
   </React.StrictMode>
